@@ -1,0 +1,42 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+
+
+<PageTitle>Index</PageTitle>
+
+<h1>Identity Blazor</h1>
+
+
+<p>@name</p>
+
+
+@code {
+
+    private string name = string.Empty;
+
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationStateTask { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (authenticationStateTask != null)
+        {
+            var user = (await authenticationStateTask).User;
+
+            if (user.Identity != null && user.Identity.Name != null && user.Identity.IsAuthenticated)
+            {
+                name = $"Welcome {user.Identity.Name}";
+            }
+            else
+            {
+                name = "Not logged in";
+            }
+        }
+
+    }
+
+}
