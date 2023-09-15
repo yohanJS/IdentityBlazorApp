@@ -4,14 +4,12 @@
 @inject UserManager<IdentityUser> UserManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-
-
 <PageTitle>Index</PageTitle>
+<div class="container min-vh-100">
+    <LoginDisplay />
+    <p>@name</p>
+</div>
 
-<h1>Identity Blazor</h1>
-
-
-<p>@name</p>
 
 
 @code {
@@ -33,7 +31,7 @@
             }
             else
             {
-                name = "Not logged in";
+                name = "Please, login.";
             }
         }
 
