@@ -1,11 +1,12 @@
-﻿@page
-@model LoginModel
+﻿<h3>Login</h3>
+@*@using IdentityBlazorApp.Areas.Identity.Pages.Account
+@inject LoginModel Model*@
 
 
-<div class="container">
+@*<div class="container">
     <div class="row justify-content-center mt-5">
         <div class="col-md-4">
-            <form class="border-1 bg-light p-3 shadow-sm" id="account" method="post" class="mt-4">
+            <form class="border-1 bg-light p-3 shadow-sm" id="account" method="post">
                 <h2 class="text-center">Welcome back</h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -22,7 +23,7 @@
                 <div class="mb-3">
                     <div class="form-check">
                         <input class="form-check-input" asp-for="Input.RememberMe" />
-                        <label class="form-check-label" asp-for="Input.RememberMe">@Html.DisplayNameFor(m => m.Input.RememberMe)</label>
+                        <label class="form-check-label"></label>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -42,8 +43,7 @@
             </form>
         </div>
     </div>
-</div>
+</div>*@
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+
+
