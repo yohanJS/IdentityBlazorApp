@@ -1,7 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Hosting
 @using Microsoft.AspNetCore.Mvc.ViewEngines
+@using Microsoft.AspNetCore.Identity
 @inject IWebHostEnvironment Environment
 @inject ICompositeViewEngine Engine
+
 
 <!DOCTYPE html>
 <html>
@@ -27,7 +29,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" href="~/">IdentityBlazorApp</a>
-
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="nav-link">Register as a new user</a>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     @{
                         var result = Engine.FindView(ViewContext, "_LoginPartial", isMainPage: false);
