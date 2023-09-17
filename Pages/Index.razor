@@ -5,18 +5,35 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 <PageTitle>Index</PageTitle>
-<div class="container d-flex vh-100 justify-content-center align-items-center">
-    <div class="text-center">
-        <h1 class="display-4">The Modern Way to Date</h1>
-        <p class="lead">Simplify your dating life with our easy-to-use app</p>
-        <a href="#" class="btn btn-primary btn-lg">Get Started</a>
+<div class="container vh-100">
+    <div class="row">
+        @if (isIsSigned)
+        {
+            <div class="col-12 mt-5">
+                <h1 class="display-3">Welcome to iDate Smart</h1>
+                <p class="lead">Congratulations on joining our community of like-minded individuals looking for meaningful connections.</p>
+                <p class="lead">We're here to make your dating experience as enjoyable and effortless as possible. Explore, connect, and discover new opportunities for love and companionship.</p>
+                <p class="lead">Thank you for choosing Easy Dates. Your journey to finding love begins now!</p>
+                <a class="btn btn-primary" href="">Get started</a>
+            </div>
+        }
+        else
+        {
+            <div class="col-12">
+                <h1 class="display-3">The Modern Way to Date</h1>
+                <p class="lead">Simplify your dating life with our easy-to-use app</p>
+                <a class="btn btn-primary" href="Identity/Account/Register">Register now</a>
+            </div>
+        }
     </div>
 </div>
 
 
 @code {
 
-    private string name = string.Empty;
+    private bool isIsSigned = false;
+
+    private Task<AuthenticationState>? user { get; set; }
 
     [CascadingParameter]
     private Task<AuthenticationState>? authenticationStateTask { get; set; }
@@ -26,17 +43,11 @@
         if (authenticationStateTask != null)
         {
             var user = (await authenticationStateTask).User;
-
-            if (user.Identity != null && user.Identity.Name != null && user.Identity.IsAuthenticated)
+            if (user.Identity != null && user.Identity.IsAuthenticated)
             {
-                name = $"Welcome {user.Identity.Name}";
-            }
-            else
-            {
-                name = "Please, login.";
+                isIsSigned = true;
             }
         }
-
     }
 
 }
