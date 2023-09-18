@@ -7,89 +7,71 @@
 <PageTitle>Index</PageTitle>
 <div class="container">
     <div class="row mt-5 p-2">
-        @if (isIsSigned)
-        {
-            <div class="col-12">
-                <h1 class="display-3 fw-bold">Welcome to iSmart Date AI</h1>
-                <p class="lead">Congratulations on joining our community of like-minded individuals looking for meaningful connections.</p>
-                <p class="lead">We're here to make your dating experience as enjoyable and effortless as possible. Explore, connect, and discover new opportunities for love and companionship.</p>
-                <p class="lead">Thank you for choosing iSmart Date AI. Your journey to finding love begins now!</p>
-                <a class="btn btn-primary" href="">Get started</a>
-                <div class="row mt-5">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <img src="" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Component</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Start</a>
+        <AuthorizeView>
+            <Authorized>
+                <div class="col-12">
+                    <h1 class="display-3 fw-bold">Welcome to iSmart Date AI</h1>
+                    <p class="lead">Congratulations on joining our community of like-minded individuals looking for meaningful connections.</p>
+                    <p class="lead">We're here to make your dating experience as enjoyable and effortless as possible. Explore, connect, and discover new opportunities for love and companionship.</p>
+                    <p class="lead">Thank you for choosing iSmart Date AI. Your journey to finding love begins now!</p>
+                    <a class="btn btn-primary" href="">Get started</a>
+                    <div class="row mt-5">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <img src="" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Component</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <a href="#" class="btn btn-primary">Start</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Component</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Start</a>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <img src="..." class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Component</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <a href="#" class="btn btn-primary">Start</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Component</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Start</a>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <img src="..." class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Component</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <a href="#" class="btn btn-primary">Start</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Component</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Start</a>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <img src="..." class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Component</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <a href="#" class="btn btn-primary">Start</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
-        else
-        {
-            <div class="col-12">
-                <h1 class="display-3 fw-bold">The Modern Way to Date</h1>
-                <p class="lead">Simplify your dating life with our easy-to-use app powered by cutting-edge AI technology.</p>
-                <a class="btn btn-primary" href="Identity/Account/Register">Register now</a>
-            </div>
-        }
+            </Authorized>
+            <NotAuthorized>
+                <div class="col-12">
+                    <h1 class="display-3 fw-bold">The Modern Way to Date</h1>
+                    <p class="lead">Simplify your dating life with our easy-to-use app powered by cutting-edge AI technology.</p>
+                    <a class="btn btn-primary" href="Identity/Account/Register">Register now</a>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
     </div>
 </div>
 
 
 @code {
 
-    private bool isIsSigned = false;
-
-    private Task<AuthenticationState>? user { get; set; }
-
-    [CascadingParameter]
-    private Task<AuthenticationState>? authenticationStateTask { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        if (authenticationStateTask != null)
-        {
-            var user = (await authenticationStateTask).User;
-            if (user.Identity != null && user.Identity.IsAuthenticated)
-            {
-                isIsSigned = true;
-            }
-        }
-    }
 
 }
